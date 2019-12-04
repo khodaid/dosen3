@@ -19,10 +19,13 @@ public class Kiriman extends Pemesanan{
         this.status = status;
     }
 
+    public Kiriman()
+    {
+        
+    }
     
-    
-    public Kiriman(String status, String nama, String namaBarang, String alamatPemesanan) {
-        super(nama, namaBarang, alamatPemesanan);
+    public Kiriman(String status, String nama, String namaBarang,int jumlah, String alamatPemesanan) {
+        super(nama, namaBarang, alamatPemesanan, jumlah);
         this.status = status;
     }
 

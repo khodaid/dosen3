@@ -1,3 +1,6 @@
+
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -35,15 +38,21 @@ public class ListKiriman extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nama", "Barang", "Alamat", "Status"
             }
         ));
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         Back.setText("<- Back");
@@ -103,6 +112,24 @@ public class ListKiriman extends javax.swing.JFrame {
         menu.setTitle("Menu");
         menu.setVisible(true);  
     }//GEN-LAST:event_MenuActionPerformed
+
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+        Controller c = new Controller();
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+//        for (int i=0; i<Controller.kirim.size(); i++)
+//        {
+//            model.addRow(Controller.data());
+//        }
+        for (int i=0; i<Controller.kirim.size(); i++)
+        {
+            model.addRow(new Object[]{Controller.kirim.get(i).getNama(),
+                Controller.kirim.get(i).getNamaBarang(),
+                Controller.kirim.get(i).getAlamatPemesanan(),
+                Controller.kirim.get(i).getStatus()
+            });
+        }
+//       
+    }//GEN-LAST:event_jTable1AncestorAdded
 
     /**
      * @param args the command line arguments

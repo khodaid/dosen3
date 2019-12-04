@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -44,6 +47,11 @@ public class UpdateStatus extends javax.swing.JFrame {
         });
 
         Update.setText("Update");
+        Update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateActionPerformed(evt);
+            }
+        });
 
         Back.setText("<- Back");
         Back.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +143,26 @@ public class UpdateStatus extends javax.swing.JFrame {
         menu.setTitle("Menu");
         menu.setVisible(true);  
     }//GEN-LAST:event_MenuActionPerformed
+
+    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
+        // TODO add your handling code here:
+        
+        int i = 0;
+        while(!Controller.kirim.get(i).getNama().equals(TextFieldNama.getText()))
+        {
+            i++;
+        }
+        if(Controller.kirim.get(i).getNama().equals(TextFieldNama.getText()))
+        {
+//            Controller.kirim.get(i).setStatus((String)cmbupdate.getSelectedItem());
+            Controller.updateStatus(i,TextFieldNama.getText(),
+                    Controller.kirim.get(i).getNamaBarang(),
+                    Controller.kirim.get(i).getJumlahBarang(),
+                    Controller.kirim.get(i).getAlamatPemesanan(),
+                    Status.getText());
+        }
+        JOptionPane.showMessageDialog(this, "TERUPDATE");
+    }//GEN-LAST:event_UpdateActionPerformed
 
     /**
      * @param args the command line arguments

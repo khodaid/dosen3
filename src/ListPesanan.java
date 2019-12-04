@@ -9,50 +9,62 @@
  * @author khoirul-06990
  */
 import java.util.*;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.AbstractTableModel;
+//import javax.swing.JTable;
+//import javax.swing.table.DefaultTableModel;
+//import javax.swing.table.AbstractTableModel;
 public class ListPesanan extends javax.swing.JFrame {
-
-        ArrayList<Pemesanan> pesan = new ArrayList<Pemesanan>();
-//    private DefaultTableModel model;
-    String nama, barang, alamat;
-    int jumlah,harga;
-    /**
-     * Creates new form ListPesanan
-     */
-    
+        private String namaBarang, alamatPemesanan, nama;
+        private int jumlahBarang, hargaTotal;
+        ArrayList<Pemesanan> pes = new ArrayList<Pemesanan>();
+        static CustomerPembelian cus = new CustomerPembelian();
+        public static Object[] d ;
+        public int a;
+        
+//    d[] = new Object[]{};
     public ListPesanan() {
         initComponents();
-//        model = new DefaultTableModel();
-//        TablePesanan.setModel(model);
-//        model.addColumn("Nama");
-//        model.addColumn("Barang");
-//        model.addColumn("Jumlah");
-//        model.addColumn("Alamat");
-//        model.addColumn("Harga");
+//        Controller c = new Controller();
+////        Object[] data = 
+//        DefaultTableModel model = (DefaultTableModel)tabel.getModel();
+//        model.addRow(c.data());
+//        DefaultTableModel model = (DefaultTableModel)tabel.getModel();
+//        model.insertRow(a, d);
+//        DefaultTableModel model = (DefaultTableModel)tabel.getModel();
+//        model.addRow(new Object[]{
+//            nama, namaBarang, jumlahBarang, alamatPemesanan, hargaTotal
+//        });
+//        for (int i = 0; i<pes.size(); i++){
+//        d = pes.get(i).Add();}
+//        DefaultTableModel model = (DefaultTableModel)tabel.getModel();
+//        model.addRow(d);
+//        List<Object> list = new ArrayList<>();
+//            for (int i=0; i<pes.size(); i++) {
+//                list.add(new Object[]{pes.get(i).getNama(),pes.get(i).getNamaBarang(),pes.get(i).getJumlahBarang(),pes.get(i).getAlamatPemesanan()});
+//            }
+//            DefaultTableModel model = (DefaultTableModel)tabel.getModel();
+//            for (int i = 0; i<list.size();i++) {
+//                model.addRow((Object[]) list.get(i));
+//            }
+//        ArrayList<Pemesanan> pesan = new ArrayList<Pemesanan>();
+//        DefaultTableModel model = (DefaultTableModel)tabel.getModel();
+//        pesan.forEach(data -> {
+//            model.addRow(new Object[]{
+//                data.getNama(), data.getNamaBarang(),data.getJumlahBarang()
+//                });
+//        });
+//        model.addRow(new Object[][]={
+//        {nama},{namaBarang},{jumlahBarang}
+//
+//    });
+//    CustomerPembelian c = new CustomerPembelian();
+//    c.pack();
+//    c.setLocationRelativeTo(null);
+//    c.setDefaultCloseOperation(c.DISPOSE_ON_CLOSE);
     }
 
-//    public ListPesanan(String nama, String barang, String alamat, int jumlah) {
-//        this.nama = nama;
-//        this.barang = barang;
-//        this.alamat = alamat;
-//        this.jumlah = jumlah;
-//        switch (barang) {
-//            case "TV":
-//                this.hargaTotal = 1500000 * jumlah;
-//                break;
-//            case "HandPhone":
-//                this.hargaTotal = 2000000 * jumlah;
-//                break;
-//            case "Laptop":
-//                this.hargaTotal = 3500000 * jumlah;
-//                break;
-//            default:
-//                break;
-//        }
-//    }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,8 +77,15 @@ public class ListPesanan extends javax.swing.JFrame {
 
         Back = new javax.swing.JButton();
         Menu = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TablePesanan = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabel = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        updatename = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        cmbupdate = new javax.swing.JComboBox<>();
+        Update = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,46 +103,117 @@ public class ListPesanan extends javax.swing.JFrame {
             }
         });
 
-        TablePesanan.setModel(new javax.swing.table.DefaultTableModel(
+        tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Nama", "Barang", "Jumlah", "Alamat", "Harga Total"
+                "Nama", "Barang", "Jumlah", "Alamat", "Harga", "Status"
             }
         ));
-        jScrollPane2.setViewportView(TablePesanan);
+        tabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabel.setName(""); // NOI18N
+        tabel.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tabelAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(tabel);
+
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
+        jLabel1.setText("Update Status Kiriman");
+
+        jLabel2.setText("Nama");
+
+        jLabel3.setText("Status");
+
+        cmbupdate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disiapkan", "Dikirim", "Diterima" }));
+
+        Update.setText("Update");
+        Update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
+        jLabel4.setText("List Pemesanan");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(98, 98, 98))
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(Back)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
-                .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(105, 105, 105)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(45, 45, 45)
+                                    .addComponent(updatename, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(108, 108, 108)
+                                .addComponent(Update))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(Back)
+                        .addGap(176, 176, 176)
+                        .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 187, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(103, 103, 103)
+                    .addComponent(jLabel4)
+                    .addContainerGap(543, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Back)
-                    .addComponent(Menu))
-                .addGap(21, 21, 21))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Back)
+                            .addComponent(Menu)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(updatename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(35, 35, 35))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cmbupdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)))
+                        .addGap(27, 27, 27)
+                        .addComponent(Update)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(38, 38, 38)
+                    .addComponent(jLabel4)
+                    .addContainerGap(214, Short.MAX_VALUE)))
         );
 
         pack();
@@ -141,80 +231,113 @@ public class ListPesanan extends javax.swing.JFrame {
         Menu menu = new Menu();
         menu.setTitle("Menu");
         menu.setVisible(true);
+//    CustomerPembelian c = new CustomerPembelian();
+//    c.setVisible(true);
+//    c.pack();
+//    c.setLocationRelativeTo(null);
+//    c.setDefaultCloseOperation(c.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_MenuActionPerformed
 
-//{pesan.get(i).getNama(), pesan.get(i).getNamaBarang(), pesan.get(i).getJumlahBarang(), pesan.get(i).getAlamatPemesanan(), pesan.get(i).getHargaTotal()}
-    public void TablePesanan()
-    {
-//        for (int i = 0; i<pesan.size(); i++)
+//    public static void AddRowT(String nama,String barang,int jumlah,String alamat)
+//    {
+//                d[0] = nama;
+//                d[1] = barang;
+//                d[2] = jumlah;
+//                d[3] = alamat;
+////                d[i][4] = pesan.get(i).getHargaTotal();
+////            }
+//    }
+//    
+    
+    private void tabelAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tabelAncestorAdded
+        // TODO add your handling code here:
+        Controller c = new Controller();
+        DefaultTableModel model = (DefaultTableModel)tabel.getModel();
+//        for (int i=0; i<Controller.kirim.size(); i++)
 //        {
-//            for (int a = 0; a<5; a++)
-//            {
-//                TablePesanan.setValueAt(nama, i, a);
-//                TablePesanan.setValueAt(barang, i, a);
-//                TablePesanan.setValueAt(jumlah, i, a);
-//                TablePesanan.setValueAt(alamat, i, a);
-//                TablePesanan.setValueAt(hargaTotal, i, a);
-////                Object [] o = new Object [5];
-////                o[0] = nama;
-////                o[1] = barang;
-////                o[2] = jumlah;
-////                o[3] = alamat;
-////                o[4] = hargaTotal;
-////                
-//////                model.addRow(o);
-//            }
+//            model.addRow(Controller.data());
 //        }
-        for (int i = 0 ; i<pesan.size(); i++)
+        for (int i=0; i<Controller.kirim.size(); i++)
         {
-            nama = pesan.get(i).getNama();
-            barang = pesan.get(i).getNamaBarang();
-            jumlah = pesan.get(i).getJumlahBarang();
-            alamat = pesan.get(i).getAlamatPemesanan();
-            harga = pesan.get(i).getHargaTotal();
+            model.addRow(new Object[]{Controller.kirim.get(i).getNama(),
+                Controller.kirim.get(i).getNamaBarang(),
+                Controller.kirim.get(i).getJumlahBarang(),
+                Controller.kirim.get(i).getAlamatPemesanan(),
+                Controller.kirim.get(i).getHargaTotal(),
+                Controller.kirim.get(i).getStatus()
+            });
         }
-
-        ArrayList<Object[]> pes = new ArrayList<Object[]>();
-        for (int i = 0; i < pesan.size(); i++) {
-            pes.add(i, new Object[] { 
-                                      pesan.get(i).getNama(), 
-                                      pesan.get(i).getNamaBarang(),
-                                      pesan.get(i).getJumlahBarang(),
-                                      pesan.get(i).getAlamatPemesanan(),
-                                      pesan.get(i).getHargaTotal()
-                                  });
-
-        }
-        String[] coll = {"Nama", "Barang", "Jumlah", "Alamat", "Harga Total"};
-        for(int i = 0; i<pesan.size(); i++)
-        {
-            {
-                pes.get(i);
-            }
-        }
-        
-        JTable TablePemesanan = new JTable(, coll);
-//        for(int i=0; i<pesan.size();i++)
+//        for(Object[] row : Controller.data())
 //        {
-//            for(int y=0; y<5; y++)
-//            {
-//                TablePesanan.setValueAt(pes, i, y);
+//            model.addRow(row);
+//        }
+//        model.addRow(
+//            for (Kiriman kirim : Controller.kirim) {
 //            }
+//        );
+//        model.insertRow(tabel.getRowCount(), c.data());
+//        for(int i = 0; i<c.kirim.size(); i++)
+//        {
+//            Object[] row= {c.kirim.get(i).getNama()};
+//            model.addRow(new Object[]{c.data()});
+//        }
+//        for (Object k : c.data())
+//        {
+//            model.addRow(();
 //        }
         
-}
+        //        model.insertRow(ERROR, d);
+        //        int a =0;
+        //        while(nama!=null){
+            //        tabel.getModel().setValueAt(nama, 1, 1);
+            //
+            //        }
+        //        List<Object> list = new ArrayList<>();
+        //            for (int i=0; i<pes.size(); i++) {
+            //                list.add(new Object[]{pes.get(i).getNama(),pes.get(i).getNamaBarang(),pes.get(i).getJumlahBarang(),pes.get(i).getAlamatPemesanan()});
+            //            }
+        //   *     DefaultTableModel model = (DefaultTableModel)tabel.getModel();
+        //   *     model.addRow(new Object[]{cus.Nama.getText(),cus.cmbBarang.getSelectedItem(),cus.jumlahbarang.getValue(),cus.Alamat.getText(),1000,"dikirim"});
+        ////        model.addRow(new Object[][]={
+            ////        {nama,namaBarang,jumlahBarang},});
+    //            for (Object p : list) {
+        //                model.addRow((Object[])p);
+        //            }
+//        DefaultTableModel model = (DefaultTableModel)tabel.getModel();
+//        model.addRow(d);
+    }//GEN-LAST:event_tabelAncestorAdded
 
-    
-//    public void ListPesanan(List<Pemesanan> pesan)
+    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
+        // TODO add your handling code here:
+        int i = 0;
+        while(!Controller.kirim.get(i).getNama().equals(updatename.getText()))
+        {
+            i++;
+        }
+        if(Controller.kirim.get(i).getNama().equals(updatename.getText()))
+        {
+//            Controller.kirim.get(i).setStatus((String)cmbupdate.getSelectedItem());
+            Controller.updateStatus(i,updatename.getText(),
+                    Controller.kirim.get(i).getNamaBarang(),
+                    Controller.kirim.get(i).getJumlahBarang(),
+                    Controller.kirim.get(i).getAlamatPemesanan(),
+                    (String)cmbupdate.getSelectedItem());
+        }
+        JOptionPane.showMessageDialog(this, "TERUPDATE");
+    }//GEN-LAST:event_UpdateActionPerformed
+
+
+//    public static void AddRowT(Object[] data)
 //    {
-//        this.pesan = pesan;
+//        
+////        DefaultTableModel model = (DefaultTableModel)tabel.getModel();
+//////        model.addRow(new Object[]{cus.Nama.getText(),cus.cmbBarang.getSelectedItem(),cus.jumlahbarang.getValue(),cus.Alamat.getText(),1000,"dikirim"});
+////        model.addRow(data);
+//        d = data;
 //    }
     
-//    public void Data(Pemesanan pes)
-//    {
-//        pesan.add(pes);
-//        TablePesanan.getModel().
-//    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -248,14 +371,21 @@ public class ListPesanan extends javax.swing.JFrame {
                 new ListPesanan().setVisible(true);
             }
         });
-
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton Menu;
-    private javax.swing.JTable TablePesanan;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton Update;
+    private javax.swing.JComboBox<String> cmbupdate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JTable tabel;
+    private javax.swing.JTextField updatename;
     // End of variables declaration//GEN-END:variables
    
 }

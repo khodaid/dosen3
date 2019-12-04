@@ -1,6 +1,10 @@
 
 import javax.swing.JComboBox;
 import java.util.*;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,9 +21,18 @@ public class CustomerPembelian extends javax.swing.JFrame {
      * Creates new form CustomerPembelian
      */
     int i = 0;
-    
     public CustomerPembelian() {
         initComponents();
+//        ListPesanan.AddRowT(new Object[]{
+//            Nama.getText(),(String)cmbBarang.getSelectedItem(),(Integer) jumlahbarang.getValue(),Alamat.getText()
+//        });
+//        ListPesanan list = new ListPesanan();
+//        String nama = Nama.getText();
+//        String barang = (String)cmbBarang.getSelectedItem();
+//        int jumlah = (Integer) jumlahbarang.getValue();
+//        String alamat = Alamat.getText();
+//        ArrayList<Pemesanan> pesan = new ArrayList<Pemesanan>();
+//        pesan.add(new Pemesanan(Nama.getText(),(String)cmbBarang.getSelectedItem(),Alamat.getText(),(Integer) jumlahbarang.getValue()));
     }
 
     /**
@@ -100,30 +113,33 @@ public class CustomerPembelian extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(Back)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmbBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jumlahbarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Alamat, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                            .addComponent(Nama)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Alamat, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                            .addComponent(Nama)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jumlahbarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(41, 41, 41)
+                                        .addComponent(buttonbeli, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(55, 55, 55))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(buttonbeli, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(81, 143, Short.MAX_VALUE))
+                        .addGap(9, 9, 9)
+                        .addComponent(Back)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,34 +156,73 @@ public class CustomerPembelian extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jumlahbarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Alamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(Alamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(buttonbeli)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Back)
                     .addComponent(Menu))
-                .addGap(24, 24, 24))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getButtonbeli() {
+        return buttonbeli;
+    }
+
+    public void setButtonbeli(JButton buttonbeli) {
+        this.buttonbeli = buttonbeli;
+    }
+
     private void buttonbeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonbeliActionPerformed
-//        ListPesanan list = new ListPesanan();
-        String name = Nama.getText();
-        String nBarang = (String)cmbBarang.getSelectedItem();
-        String alamat = Alamat.getName();
+
+        String nama = Nama.getText();
+        String barang = (String)cmbBarang.getSelectedItem();
         int jumlah = (Integer) jumlahbarang.getValue();
-        ArrayList<Pemesanan> pesan = new ArrayList<Pemesanan>();
-        pesan.add(i, new Pemesanan(name,nBarang,alamat,jumlah));
-        i++;
-//        ListPesanan list = new ListPesanan(name,nBarang,alamat,jumlah);
+        String alamat = Alamat.getText();
+        
+//        Controller control = new Controller(nama, barang, jumlah, alamat);
+        Controller.insert(nama, barang, jumlah, alamat);
+        JOptionPane.showMessageDialog(this, "Sukses");
+//        list.a = i;
+//        list.setNama(nama); list.setNamaBarang(barang); list.setJumlahBarang(jumlah); list.setAlamatPemesanan(alamat);
+//        DefaultTableModel model = (DefaultTableModel)list.tabel.getModel();
+//        model.addRow(new Object[]{Nama.getText(), (String)cmbBarang.getSelectedItem(), (Integer) jumlahbarang.getValue(), Alamat.getText()});
+//        DefaultTableModel table = (DefaultTableModel)pesan.tabel.getModel();
+//        table.addRow(new Object[]{nama,barang,jumlah,alamat});
+//        Object[] a = new Object[]{Nama.getText(),(String)cmbBarang.getSelectedItem(),(Integer) jumlahbarang.getValue(),Alamat.getText()};
+//        ListPesanan.AddRowT(a);
+//        ListPesanan.AddRowT(Nama.getText(),(String)cmbBarang.getSelectedItem(),(Integer) jumlahbarang.getValue(),Alamat.getText());
+//        ListPesanan.AddRowT(new Object[]{
+//            Nama.getText(),(String)cmbBarang.getSelectedItem(),(Integer) jumlahbarang.getValue(),Alamat.getText()
+//        });
+//        l.pack();
+//        l.setDefaultCloseOperation(l.DISPOSE_ON_CLOSE);
+//        ArrayList<Pemesanan> pesan = new ArrayList<Pemesanan>();
+//        pesan.add(new Pemesanan(Nama.getText(),(String)cmbBarang.getSelectedItem(),Alamat.getText(),(Integer) jumlahbarang.getValue()));
+//        pesan.add(new Pemesanan("nama","barang","alamat",10));
+//        pesan.forEach(data -> {
+//        });
+//        ListPesanan list = new ListPesanan((String)cmbBarang.getSelectedItem(),Alamat.getText(),Nama.getText(),(Integer) jumlahbarang.getValue());
+//         pesan.add(i, element);
+//        i++;
+        
+//        DefaultTableModel model = (DefaultTableModel)ListPesanan.tabel.getModel();
+//        model.addRow(new Object[]{
+//            Nama.getText(),(String)cmbBarang.getSelectedItem(),(Integer) jumlahbarang.getValue(),Alamat.getText()
+//        });
         Customer cus = new Customer();
         cus.setTitle("Customer");
+//        ListPesanan.AddRowT(new Object[]{Nama.getText(),(String)cmbBarang.getSelectedItem(),Alamat.getText(),(Integer) jumlahbarang.getValue()});
+//        list.pack();
+//        list.setDefaultCloseOperation(ListPesanan.DISPOSE_ON_CLOSE);
+//        list.setVisible(true);
         cus.setVisible(true);
     }//GEN-LAST:event_buttonbeliActionPerformed
 
@@ -187,7 +242,7 @@ public class CustomerPembelian extends javax.swing.JFrame {
         // TODO add your handling code here:
         Menu menu = new Menu();
         menu.setTitle("Menu");
-        menu.setVisible(true);                      
+        menu.setVisible(true); 
     }//GEN-LAST:event_MenuActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -238,16 +293,16 @@ public class CustomerPembelian extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Alamat;
+    public javax.swing.JTextField Alamat;
     private javax.swing.JButton Back;
     private javax.swing.JButton Menu;
-    private javax.swing.JTextField Nama;
+    public javax.swing.JTextField Nama;
     private javax.swing.JButton buttonbeli;
-    private javax.swing.JComboBox<String> cmbBarang;
+    public javax.swing.JComboBox<String> cmbBarang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JSpinner jumlahbarang;
+    public javax.swing.JSpinner jumlahbarang;
     // End of variables declaration//GEN-END:variables
 }

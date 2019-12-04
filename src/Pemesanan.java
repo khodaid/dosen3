@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.util.*;
 /**
  *
  * @author khoirul-06990
@@ -12,7 +12,8 @@ public class Pemesanan {
     private String namaBarang, alamatPemesanan, nama;
     private int jumlahBarang, hargaTotal;
     private Kiriman kiriman;
-    
+//    ArrayList<ListPesanan> list = new ArrayList<ListPesanan>();
+//    private Object[] data;
     Pemesanan(String nama, String namaBarang, String alamatPemesanan, int jumlahBarang) {
         this.nama = nama;
         this.namaBarang = namaBarang;
@@ -90,5 +91,17 @@ public class Pemesanan {
 
     public void setHargaTotal(int hargaTotal) {
         this.hargaTotal = hargaTotal;
+    }
+    
+    public Object[] Add()
+    {
+//        Object d[] = null;
+//            d[0] = getNama();
+//            d[1] = getNamaBarang();
+//            d[2] = getJumlahBarang();
+//            d[3] = getAlamatPemesanan();
+//            d[4] = getHargaTotal();
+        Object[] d = new Object[]{nama,namaBarang,jumlahBarang,alamatPemesanan,hargaTotal};
+        return d;
     }
 }
